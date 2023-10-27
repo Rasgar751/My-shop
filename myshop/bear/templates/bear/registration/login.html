@@ -1,0 +1,31 @@
+{% extends "bear/base.html" %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+  <h1>Вход</h1>
+  {% if form.errors %}
+    <p>
+      Ваше имя или пароль неверны.
+      Пожалуйста, попробуйте ещё раз.
+    </p>
+  {% else %}
+    <p>
+      Пожалуйста, заполните следующие поля, чтобы войти.
+      Если у вас нет аккаунта <a href="{% url 'bear:register' %}">зарегистрируйтесь здесь</a>.
+    </p>
+  {% endif %}
+  <div class="login-form">
+    <form action="{% url 'bear:login' %}" method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}" />
+      <p><input type="submit" value="Войти"></p>
+    </form>
+    <p>
+      <a href="">
+        Забыли пароль?
+      </a>
+    </p>
+  </div>
+{% endblock %}

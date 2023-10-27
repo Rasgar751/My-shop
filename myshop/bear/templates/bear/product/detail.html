@@ -1,0 +1,20 @@
+{% extends 'bear/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="product-details">
+    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="Product Image">
+    <div class="product-info">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        <span class="price">{{ product.price }}₽</span>
+        <form method="post" action="{% url 'cart:cart_add' product.id %}">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <button class="add-to-cart">Добавить в карзину</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

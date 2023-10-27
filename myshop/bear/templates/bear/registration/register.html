@@ -1,0 +1,13 @@
+{% extends 'bear/base.html' %}
+
+{% block title %}Создание аккаунта{% endblock %}
+
+{% block content %}
+  <h1>Создание аккаунта</h1>
+  <p>Пожалуйста, заполните поля:</p>
+  <form method="post">
+    {{ user_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Создать мой аккаунт"></p>
+  </form>
+{% endblock %}
